@@ -59,6 +59,31 @@ public class Dice{
 			availableCategories.push("ThreeOfAKind");	
 		}	
 	}
+	//3 of a kind and pair
+	private void isFullHouse() {
+		if(getFrequencies().contains(3) || getFrequencies().contains(2)) {
+			availableCategories.push("FullHouse");
+		}
+	}
+	private void isSmallStraight() {
+		if( !getFrequencies().contains(4)&&!getFrequencies().contains(5) 
+				&&!getFrequencies().contains(6)) {
+			availableCategories.push("SmallStraight");
+		}
+
+	}
+	private void isLargeStraight() {
+		if(!getFrequencies().contains(3) && !getFrequencies().contains(4) 
+				&&!getFrequencies().contains(5)  &&!getFrequencies().contains(6)) {
+			availableCategories.push("LargeStraight");
+		}
+
+	}
+	private void isYahtzee(){ 
+		if(getFrequencies().contains(5)) {
+			availableCategories.push("Yahtzee");	
+		}	
+	}
 
 	public void scorePoint(String selection) {
 
@@ -67,6 +92,17 @@ public class Dice{
 				currentScore=+dieStack.pop();
 			}
 			scores.push(currentScore);
+		}
+		else if (chosenCategory=="FullHouse")currentScore=25;
+		else if (chosenCategory=="SmallStraight")currentScore=30;
+		else if (chosenCategory=="LargeStraight")currentScore=40;
+		else if (chosenCategory=="Yahtzee")currentScore=50;
+		else if (chosenCategory=="YahtzeeBonus")currentScore=100;
+
+		else if (chosenCategory=="Chance") {
+			while(!dieStack.isEmpty()) {
+				currentScore=+dieStack.pop();
+			}
 		}
 	}
 
