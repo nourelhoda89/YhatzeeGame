@@ -2,7 +2,12 @@ import java.util.*;
 import java.util.Scanner;
 
 import ArrayBag.ArrayBag;
-
+/**to do:
+ * try to use a generic collection instead of array bag
+ * use sets for available score,that does not allow duplicates
+ * implements all the rules in play or dice
+ * no print statements
+ * */
 public class Play {
 	Player p1 = new Player();
 

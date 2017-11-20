@@ -1,26 +1,29 @@
-import ArrayBag.ArrayBag;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Dice{
 	private int finalScore;
-	ArrayBag<Integer> scores;
+	private List<Integer> playerScores;
 
 public Player() {
 	finalScore=0;
-	scores= new ArrayBag<>(13);
+	playerScores= new ArrayList<>();
 }
 
 	public int roundScore(String selection) {
 		int score= getRoundScore(selection);
-		scores.add(score);
+		playerScores.add(score);
 		return score;
 	}
-	public void getScores() {
-		scores.displayAll();
+	public List<Integer> getPlayerScores() {
+		return playerScores;
 	}
 	public int finalScore(){
-		while(!scores.isEmpty()) {
-			finalScore+=scores.remove();
-		}
-return finalScore;
+		while(!playerScores.isEmpty()) {
+			for(int i=0;i<playerScores.size();i++) {
+					finalScore=+playerScores.get(i);
+				}
+			}
+		return finalScore;
 	}
 }
