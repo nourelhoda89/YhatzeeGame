@@ -7,10 +7,11 @@ public class Play {
 	private int numberOfRolls;
 	private Set<String> selectionSet;
 	private Set<String> localCat;
+	List<Integer> dieList;
 	private int round;
 	Scanner key= new Scanner(System.in);
 	String selection;
-	
+
 	public Play() {
 		numberOfRolls=0;
 		round=1;
@@ -22,12 +23,15 @@ public class Play {
 	 * */
 	public  void initiate() {
 		char again='y'; 
+		//throw an StringIndexOutOfBoundsException if nothing is entered
+		
 		while ((again=='y' ||again=='Y')) {
-			List<Integer> dieList=p1. getNewDieList();
+			dieList= p1.getNewDieList();
 			for(int i = 0; i < dieList.size(); i++) {
 				System.out.println(dieList.get(i));
 			}
 			numberOfRolls++;
+			
 			if (numberOfRolls>MAX_NUM_ROLLS){
 				again='n';
 			}
@@ -35,6 +39,7 @@ public class Play {
 				System.out.println(" Do you want to roll again?Y/N");
 				again=key.nextLine().charAt(0);
 			}
+			
 		}
 	}
 	/**This method prevent the user from scoring the same category twice 
@@ -48,11 +53,12 @@ public class Play {
 		if(selection.equals("12") ) {
 			yahtzeeCount++;
 		}
-		//if Yahtzee was selected more than twice it gets removed from the localCat
+		//if Yahtzee was selected more than twice it gets removed from localCat
 		if(selection.equals("12")&& yahtzeeCount>2 ){
 			localCat.remove(selection);
 		}
-		
+		//Iterate through the set of already selected categories 
+		//if an element found to exist in both, it get removed from localCat
 		for (Iterator<String> it = selectionSet.iterator(); it.hasNext(); ) {
 			String s = it.next();
 			selectionSet.iterator();
@@ -117,6 +123,7 @@ public class Play {
 					!selection.equals("9")&&!selection.equals("10")&&
 					!selection.equals("11")&&!selection.equals("12")&&
 					!selection.equals("13")&&!selection.equals("14"));
+			//score for the Yahtzee bonus is double regular Yahtzee
 			int roundScore=0;
 			if(selection.equals("12")&&selectionSet.contains("12")) {
 				roundScore=p1.roundScore("14");
@@ -132,8 +139,5 @@ public class Play {
 		System.out.println("final score is "+p1.finalScore());
 
 	}
-	public static void main(String[] args) {
-		Play p =new Play();
-		p.playGame();
-	}
+	
 }
