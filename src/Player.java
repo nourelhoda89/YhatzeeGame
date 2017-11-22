@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Player extends Dice{
 	private int finalScore;
 	private List<Integer> playerScores;
+
 
 public Player() {
 	finalScore=0;
@@ -19,11 +21,11 @@ public Player() {
 		return playerScores;
 	}
 	public int finalScore(){
-		while(!playerScores.isEmpty()) {
 			for(int i=0;i<playerScores.size();i++) {
-					finalScore=+playerScores.get(i);
+					finalScore=finalScore+playerScores.get(i);
 				}
-			}
+			
 		return finalScore;
 	}
+	
 }
